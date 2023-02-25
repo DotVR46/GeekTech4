@@ -26,3 +26,20 @@ class HelloTestCase(TestCase):
         self.assertEqual(response_post.status_code, 200)
         self.assertEqual(response_get.content.decode(), expected_get)
         self.assertEqual(response_post.content.decode(), expected_post)
+
+
+    def test_get_about(self):
+        response = self.client.get(reverse("about-page"))
+
+        expected_data = "About"
+
+        self.assertEqual(response.content.decode(), expected_data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_contacts(self):
+        response = self.client.get(reverse("contacts-page"))
+
+        expected_data = "Contacts"
+
+        self.assertEqual(response.content.decode(), expected_data)
+        self.assertEqual(response.status_code, 200)
