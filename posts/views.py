@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from posts.models import Post
+
 
 def hello(request):
     # my_list = [1, 2, 3, 4]
@@ -26,9 +28,10 @@ def hello(request):
 
 
 def get_index(request):
+    posts = Post.objects.filter(status=True)
     context = {
         "title": "Main page",
-        "my_list": [1, 2, 3, 4],
+        "posts": posts,
     }
     return render(request, "posts/index.html", context=context)
 
