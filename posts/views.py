@@ -41,4 +41,4 @@ def get_about(request):
 
 
 def get_contacts(request):
-    return HttpResponse("Contacts")
+    return render(request, "posts/contacts.html", {"title": "Контакты"})
