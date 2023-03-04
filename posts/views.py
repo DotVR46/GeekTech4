@@ -59,6 +59,18 @@ class PostCreateView(generic.CreateView):
     success_url = reverse_lazy("index-page")
 
 
+class PostUpdateView(generic.UpdateView):
+    model = Post
+    template_name = "posts/post_update.html"
+    fields = ["title", "content"]
+    success_url = reverse_lazy("index-page")
+
+
+class PostDeleteView(generic.DeleteView):
+    model = Post
+    success_url = reverse_lazy("index-page")
+
+
 class AboutView(generic.TemplateView):
     template_name = "posts/about.html"
     extra_context = {
