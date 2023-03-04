@@ -21,7 +21,9 @@ def hello(request):
     #         </body>
     #     </html>
     # """
-    headers = {"name": "Alex", }
+    headers = {
+        "name": "Alex",
+    }
     # "Content-Type": "application/vnd.ms-excel",
     # "Content-Disposition": "attachment; filename=file.xls"}
     return HttpResponse(body, headers=headers, status=500)
@@ -45,3 +47,15 @@ def get_about(request):
 
 def get_contacts(request):
     return render(request, "posts/contacts.html", {"title": "Контакты"})
+
+
+def post_create(request):
+    return render(request, "posts/post_create.html")
+
+
+def post_delete(request):
+    return render(request, "posts/post_delete.html")
+
+
+def post_update(request):
+    return render(request, "posts/post_update.html")
