@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy
 
-from posts.forms import CommentForm
+from posts.forms import CommentForm, PostForm
 from posts.models import Post, Comment
 
 
@@ -46,6 +46,13 @@ class IndexView(generic.ListView):
     # model = Post
     template_name = "posts/index.html"
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["title"] = "Главная страница"
+
+        return context
+
 
 class PostDetailView(generic.DetailView):
     model = Post
@@ -82,7 +89,7 @@ class PostDetailView(generic.DetailView):
 class PostCreateView(generic.CreateView):
     model = Post
     template_name = "posts/post_create.html"
-    fields = ["title", "content"]
+    form_class = PostForm
     success_url = reverse_lazy("index-page")
 
 
